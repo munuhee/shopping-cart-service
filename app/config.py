@@ -9,7 +9,7 @@ from dotenv import load_dotenv
 load_dotenv()
 
 if os.environ.get('FLASK_ENV') == 'testing':
-    SQLALCHEMY_DATABASE_URI = 'sqlite:///memory:'
+    SQLALCHEMY_DATABASE_URI = 'sqlite:///:memory:'
 else:
     SQLALCHEMY_DATABASE_URI = os.environ.get('SQLALCHEMY_DATABASE_URI')
 

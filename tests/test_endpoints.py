@@ -1,3 +1,4 @@
+import os
 import unittest
 from app import app, db
 
@@ -5,8 +6,7 @@ class TestShoppingCartRoutes(unittest.TestCase):
 
     def setUp(self):
         """Set up a test environment."""
-        app.config['TESTING'] = True
-        app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///:memory:'
+        app.config.from_pyfile('config.py')
         self.app = app.test_client()
         with app.app_context():
             db.create_all()
