@@ -1,9 +1,5 @@
 #!/bin/bash
 
-git clone https://github.com/munuhee/shopping-cart-service.git
-
-cd shopping-cart-service
-
 echo "🔨 Building the Docker image..."
 
 docker build -t shopping-cart-service:latest .
