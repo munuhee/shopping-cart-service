@@ -18,16 +18,23 @@ from app.services.cart_service import (
     delete_cart_item,
 )
 
-@app.route('/', methods=['GET'])
+class CartError(Exception):
+    """Custom exception for cart operations."""
+    def __init__(self, message, status_code):
+        self.message = message
+        self.status_code = status_code
+        super().__init__(self.message)
+
+@app.route('/cart', methods=['GET'])
 def get_cart():
     """Route to retrieve all items in the cart."""
     try:
         cart_items = get_cart_items()
         return jsonify({'cart_items': cart_items}), 200
-    except Exception as e:
-        return jsonify({'error': str(e)}), 500
+    except CartError as e:
+        return jsonify({'error': str(e)}), e.status_code
 
-@app.route('/<int:item_id>', methods=['GET'])
+@app.route('/cart/<int:item_id>', methods=['GET'])
 def get_cart_item(item_id):
     """Route to retrieve a specific item in the cart by its ID."""
     try:
@@ -35,10 +42,10 @@ def get_cart_item(item_id):
         if not cart_item:
             return jsonify({'error': 'Item not found'}), 404
         return jsonify({'cart_item': cart_item}), 200
-    except Exception as e:
-        return jsonify({'error': str(e)}), 500
+    except CartError as e:
+        return jsonify({'error': str(e)}), e.status_code
 
-@app.route('/add', methods=['POST'])
+@app.route('/cart/add', methods=['POST'])
 def add_to_cart():
     """Route to add a new item to the cart."""
     try:
@@ -52,10 +59,10 @@ def add_to_cart():
 
         new_item = add_item_to_cart(product_name, quantity, price)
         return jsonify({'message': 'Item added to cart successfully', 'item': new_item}), 201
-    except Exception as e:
-        return jsonify({'error': str(e)}), 500
+    except CartError as e:
+        return jsonify({'error': str(e)}), e.status_code
 
-@app.route('/<int:item_id>', methods=['PUT'])
+@app.route('/cart/<int:item_id>', methods=['PUT'])
 def update_cart(item_id):
     """Route to update an item in the cart."""
     try:
@@ -64,10 +71,10 @@ def update_cart(item_id):
         if not updated_item:
             return jsonify({'error': 'Item not found'}), 404
         return jsonify({'message': 'Item updated successfully', 'item': updated_item}), 200
-    except Exception as e:
-        return jsonify({'error': str(e)}), 500
+    except CartError as e:
+        return jsonify({'error': str(e)}), e.status_code
 
-@app.route('/<int:item_id>', methods=['DELETE'])
+@app.route('/cart/<int:item_id>', methods=['DELETE'])
 def delete_from_cart(item_id):
     """Route to delete an item from the cart."""
     try:
@@ -75,5 +82,5 @@ def delete_from_cart(item_id):
         if not deleted_item:
             return jsonify({'error': 'Item not found'}), 404
         return jsonify({'message': 'Item deleted successfully', 'deleted_item': deleted_item}), 200
-    except Exception as e:
-        return jsonify({'error': str(e)}), 500
+    except CartError as e:
+        return jsonify({'error': str(e)}), e.status_code
