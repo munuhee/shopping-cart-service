@@ -1,6 +1,9 @@
 # Shopping Cart Service API
 
-Welcome to the Shopping Cart Service API! This API provides endpoints to manage shopping carts for an e-commerce application.
+[![License](https://img.shields.io/badge/License-Apache-blue.svg)](https://opensource.org/licenses/Apache-2.0)
+[![Python Version](https://img.shields.io/badge/Python-3.10-green)](https://www.python.org/downloads/)
+
+This Shopping Cart Service API is a Flask-based RESTful API specifically crafted for e-commerce. It offers endpoints to easily handle shopping cart management. Built on Flask's flexibility and REST principles, this API simplifies the creation, retrieval, update, and deletion of shopping carts. It provides developers with scalable and interoperable solutions for e-commerce platforms.
 
 ## Table of Contents
 
