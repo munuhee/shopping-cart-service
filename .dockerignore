@@ -1,0 +1,32 @@
+# Ignore Python bytecode files
+__pycache__/
+*.pyc
+
+# Ignore version control system directories
+.git
+.gitignore
+
+# Ignore development and local files
+venv/
+.env
+
+# Ignore editor-specific files
+.vscode/
+*.swp
+
+# Ignore any temporary files or logs
+*.log
+*.tmp
+
+# Ignore any build artifacts or compiled code
+*.pyo
+*.pyd
+*.pyz
+*.pyzw
+*.pyc
+
+# Ignore Docker specific files
+.dockerignore
+Dockerfile
+.dockerignore
+.dockerignore~
