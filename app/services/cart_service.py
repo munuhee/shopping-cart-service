@@ -1,7 +1,7 @@
 """
 This module provides functions to manage a shopping cart using CartItem objects.
 """
-from app.models import CartItem, db
+from app.models import db, CartItem
 
 def serialize_cart_item(cart_item):
     """Serialize a CartItem object into a dictionary."""
@@ -26,12 +26,12 @@ def get_cart_items():
 
 def get_cart_item_by_id(item_id):
     """Retrieve a cart item by its ID."""
-    cart_item = CartItem.query.get(item_id)
+    cart_item = db.session.get(CartItem, item_id)
     return serialize_cart_item(cart_item) if cart_item else None
 
 def update_cart_item(item_id, data):
     """Update a cart item with new data."""
-    cart_item = CartItem.query.get(item_id)
+    cart_item = db.session.get(CartItem, item_id)
     if not cart_item:
         return None
 
@@ -43,7 +43,7 @@ def update_cart_item(item_id, data):
 
 def delete_cart_item(item_id):
     """Delete a cart item by its ID."""
-    cart_item = CartItem.query.get(item_id)
+    cart_item = db.session.get(CartItem, item_id)
     if not cart_item:
         return None
 
