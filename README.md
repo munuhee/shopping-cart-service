@@ -30,8 +30,12 @@ To set up the Shopping Cart Service API, follow these steps:
     ```bash
     cd shopping-cart-service
     ```
+3. Grant execution permissions to the setup script:
+    ```bash
+    chmod +x bin/setup.sh
+    ```
 
-3. Run the setup script:
+4. Run the setup script:
 
     ```bash
     ./bin/setup.sh
